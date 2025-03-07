@@ -11,7 +11,11 @@ const StarRating = () => {
     const maxRating = 5;
     for (let i = 0; i < maxRating; i++) {
       stars.push(
-        <Star setRating={() => handleSetRating(i + 1)} key={i} />
+        <Star
+          isSelected={courseRating > i}
+          setRating={() => handleSetRating(i + 1)}
+          key={i}
+        />
       );
     }
     return stars;
@@ -20,7 +24,11 @@ const StarRating = () => {
   // Write an event handler that updates the courseRating state.
   // Pass the function to a Star component via props
   const handleSetRating = (rating) => {
-    setCourseRating(rating);
+    if (courseRating === rating) {
+      setCourseRating(0);
+    } else {
+      setCourseRating(rating);
+    }
   };
 
   return (
